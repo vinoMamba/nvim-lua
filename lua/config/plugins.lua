@@ -21,4 +21,5 @@ require("lazy").setup({
 	require("config.plugins.notify"),
 	require("config.plugins.rooter"),
 	require("config.plugins.statusbar"),
+	require("config.plugins.flash"),
 })
