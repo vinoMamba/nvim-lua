@@ -38,7 +38,14 @@ local nmappings = {
   -- others
   { from = "<leader><CR>",  to = ":nohlsearch<CR>" },
   { from = "<leader>jo",  to = ":Joshuto<CR>" },
-	
+
+	--tabline
+	{ from = "<leader><Tab>",            to = ":tabe<CR>", },
+	{ from = "ts",            to = ":tab split<CR>", },
+	{ from = "-",            to = ":-tabnext<CR>", },
+	{ from = "=",to = ":+tabnext<CR>", },
+	{ from = "tm-",           to = ":-tabmove<CR>", },
+	{ from = "tm=",           to = ":+tabmove<CR>", },
 }
 
 for _,mapping in ipairs(nmappings) do 

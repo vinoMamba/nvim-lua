@@ -1,5 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "176e85eeb63f1a5970d6b88f1725039d85ca0055" },
+  "bufferline.nvim": { "branch": "main", "commit": "bf2f6b7edd0abf6b0732f5e5c0a8f30e51611c75" },
   "flash.nvim": { "branch": "main", "commit": "a8da6ff212c1885ecde26af477207742959c67d7" },
   "hlchunk.nvim": { "branch": "main", "commit": "beae3c28cee62289ab320240a10f721e2b67aef6" },
   "joshuto.nvim": { "branch": "master", "commit": "2993aca60f56757e854b509e34fcba4f25e778ba" },
@@ -11,6 +12,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "1ef286e5b0cfd17f56586a8445cd83d61647f851" },
   "nvim-treesitter-context": { "branch": "master", "commit": "63f3ffc50b0afc59be1015153d00922498085be8" },
   "nvim-ufo": { "branch": "main", "commit": "43e39ec74cd57c45ca9d8229a796750f6083b850" },
+  "nvim-web-devicons": { "branch": "master", "commit": "9ab9b0b894b2388a9dbcdee5f00ce72e25d85bf9" },
   "playground": { "branch": "master", "commit": "2b81a018a49f8e476341dfcb228b7b808baba68b" },
   "promise-async": { "branch": "main", "commit": "e94f35161b8c5d4a4ca3b6ff93dd073eb9214c0e" },
   "vim-deus": { "branch": "master", "commit": "1be965e7bc1c01e7db5e46dcd0e50d32d4eef434" },
