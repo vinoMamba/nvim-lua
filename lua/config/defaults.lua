@@ -1,13 +1,10 @@
--- 终端真彩色支持
-vim.o.termguicolors = true 
+vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
--- 加快在终端中的显示速度
-vim.o.ttyfast = true
--- 自动改变当前工作目录到编辑的文件所在的目录
-vim.o.autochdir = true
--- 是否加载不安全的配置和脚本
-vim.o.secure = false
 
+vim.o.ttyfast = true
+vim.o.autochdir = true
+vim.o.exrc = true
+vim.o.secure = false
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
@@ -40,10 +37,22 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.inccommand = 'split'
 vim.o.completeopt = 'longest,noinsert,menuone,noselect,preview'
 vim.o.completeopt = 'menuone,noinsert,noselect,preview'
+-- vim.o.lazyredraw = true
 vim.o.visualbell = true
 vim.o.colorcolumn = '100'
 vim.o.updatetime = 100
 vim.o.virtualedit = 'block'
+
+vim.cmd([[
+silent !mkdir -p $HOME/.config/nvim/tmp/backup
+silent !mkdir -p $HOME/.config/nvim/tmp/undo
+set backupdir=$HOME/.config/nvim/tmp/backup,.
+set directory=$HOME/.config/nvim/tmp/backup,.
+if has('persistent_undo')
+	set undofile
+	set undodir=$HOME/.config/nvim/tmp/undo,.
+endif
+]])
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
 vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
@@ -65,3 +74,15 @@ vim.g.terminal_color_11 = '#F4F99D'
 vim.g.terminal_color_12 = '#CAA9FA'
 vim.g.terminal_color_13 = '#FF92D0'
 vim.g.terminal_color_14 = '#9AEDFE'
+
+vim.cmd([[autocmd TermOpen term://* startinsert]])
+vim.cmd([[
+augroup NVIMRC
+    autocmd!
+    autocmd BufWritePost .vim.lua exec ":so %"
+augroup END
+tnoremap <C-N> <C-\><C-N>
+tnoremap <C-O> <C-\><C-N><C-O>
+]])
+
+vim.cmd([[hi NonText ctermfg=gray guifg=grey10]])

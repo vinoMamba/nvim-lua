@@ -13,7 +13,7 @@ return {
       desc = "Flash",
     },
     {
-      "<leader>ff",
+      "f=",
       mode = { "n", "x", "o" },
       function()
         require("flash").jump({
@@ -23,7 +23,7 @@ return {
       desc = "Flash",
     },
     {
-      "<leader>fb",
+      "f-",
       mode = { "n", "x", "o" },
       function()
         require("flash").jump({
