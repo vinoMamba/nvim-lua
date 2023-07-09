@@ -7,7 +7,7 @@ return {
 				chunk = {
 					enable = true,
 					use_treesitter = true,
-					notify= true,
+					notify = true,
 					style = {
 						{ fg = "#3ea1f5" },
 					},
