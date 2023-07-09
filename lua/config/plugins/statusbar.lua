@@ -23,7 +23,7 @@ return {
 			sections = {
 				lualine_a = { 'filename' },
 				lualine_b = { 'branch', 'diff', 'diagnostics' },
-				lualine_c = {},
+				lualine_c = {'mode'},
 				lualine_x = {},
 				lualine_y = { 'filesize', 'fileformat', 'filetype' },
 				lualine_z = { 'location' }

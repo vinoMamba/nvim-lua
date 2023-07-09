@@ -12,20 +12,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	require("config.plugins.colorscheme"),
-	require("config.plugins.editor"),
-	require("config.plugins.comment"),
+	require("config.plugins.colorscheme"), --主题
+	require("config.plugins.editor"), -- 编辑器相关
+	require("config.plugins.comment"), -- 注释
 	require("config.plugins.treesitter"),
-	require("config.plugins.mason"),
-	require("config.plugins.autocomplete").config,
-	require("config.plugins.lspconfig").config,
-	require("config.plugins.debugger"),
 	require("config.plugins.indent"),
+	require("config.plugins.rooter"),  -- 设置工作目录
+	require("config.plugins.statusbar"), -- 底部信息栏
+	require("config.plugins.tabline"), -- tab 切换
 	require("config.plugins.joshuto"),
-	require("config.plugins.notify"),
-	require("config.plugins.rooter"),
-	require("config.plugins.statusbar"),
-	require("config.plugins.tabline"),
 	require("config.plugins.flash"),
-	require("config.plugins.telescope"),
+
+	-- require("config.plugins.mason"),
+	-- require("config.plugins.autocomplete").config,
+	-- require("config.plugins.lspconfig").config,
+	-- require("config.plugins.debugger"),
+	-- require("config.plugins.notify"),
+	-- require("config.plugins.telescope"),
 })

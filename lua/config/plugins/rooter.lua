@@ -1,5 +1,6 @@
 return {
 	{
+		-- Rooter changes the working directory to the project root when you open a file or directory.
 		"airblade/vim-rooter",
 		init = function()
 			vim.g.rooter_patterns = { '__vim_project_root', '.git/' }

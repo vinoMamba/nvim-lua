@@ -3,7 +3,7 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		config = function()
-			require("nvim-autopairs").setup({})
+			require("nvim-autopairs").setup()
 		end
 	},
 	-- 折叠代码
@@ -44,17 +44,17 @@ return {
 			buftypes = {},
 		}
 	},
-	{
-		"RRethy/vim-illuminate",
-		config = function()
-			require('illuminate').configure({
-				providers = {
-					-- 'lsp',
-					-- 'treesitter',
-					'regex',
-				},
-				under_cursor = true
-			})
-		end
-	},
+	-- {
+	-- 	"RRethy/vim-illuminate",
+	-- 	config = function()
+	-- 		require('illuminate').configure({
+	-- 			providers = {
+	-- 				-- 'lsp',
+	-- 				-- 'treesitter',
+	-- 				'regex',
+	-- 			},
+	-- 			under_cursor = true
+	-- 		})
+	-- 	end
+	-- },
 }
