@@ -7,17 +7,19 @@ return {
 		end
 	},
 	-- 折叠代码
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async" },
-		config = function() 
-			require('ufo').setup() 
-			vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-			vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-		end	
-	},
-	{ 'gcmt/wildfire.vim',  lazy = false, },
-	-- 颜色显示 
+	-- {
+	-- 	"kevinhwang91/nvim-ufo",
+	-- 	dependencies = { "kevinhwang91/promise-async" },
+	-- 	config = function()
+	-- 		require('ufo').setup()
+	-- 		vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+	-- 		vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+	-- 	end	
+	-- },
+
+	{ 'gcmt/wildfire.vim',  lazy = false, }, -- 按回车选中
+	{ 'tpope/vim-surround', lazy = false },
+	-- 颜色显示
 	{
 		"NvChad/nvim-colorizer.lua",
 		opts = {
