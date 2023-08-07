@@ -1,88 +1,55 @@
-vim.o.termguicolors = true
-vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+-- This file is automatically loaded by plugins.core
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-vim.o.ttyfast = true
-vim.o.autochdir = true
-vim.o.exrc = true
-vim.o.secure = false
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.cursorline = true
-vim.o.expandtab = false
-vim.o.tabstop = 2
-vim.o.smarttab = true
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.autoindent = true
-vim.o.list = true
-vim.o.listchars = 'tab:|\\ ,trail:▫'
-vim.o.scrolloff = 4
-vim.o.ttimeoutlen = 0
-vim.o.timeout = false
-vim.o.viewoptions = 'cursor,folds,slash,unix'
-vim.o.wrap = true
-vim.o.textwidth = 0
-vim.o.indentexpr = ''
-vim.o.foldmethod = 'indent'
-vim.o.foldlevel = 99
-vim.o.foldenable = true
-vim.o.foldlevelstart = 99
-vim.o.formatoptions = vim.o.formatoptions:gsub('tc', '')
-vim.o.splitright = true
-vim.o.splitbelow = true
-vim.o.showmode = false
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.shortmess = vim.o.shortmess .. 'c'
-vim.o.inccommand = 'split'
-vim.o.completeopt = 'longest,noinsert,menuone,noselect,preview'
-vim.o.completeopt = 'menuone,noinsert,noselect,preview'
--- vim.o.lazyredraw = true
-vim.o.visualbell = true
-vim.o.colorcolumn = '100'
-vim.o.updatetime = 100
-vim.o.virtualedit = 'block'
+local opt = vim.opt
 
-vim.cmd([[
-silent !mkdir -p $HOME/.config/nvim/tmp/backup
-silent !mkdir -p $HOME/.config/nvim/tmp/undo
-set backupdir=$HOME/.config/nvim/tmp/backup,.
-set directory=$HOME/.config/nvim/tmp/backup,.
-if has('persistent_undo')
-	set undofile
-	set undodir=$HOME/.config/nvim/tmp/undo,.
-endif
-]])
+opt.autowrite = true -- Enable auto write
+opt.clipboard = "unnamedplus" -- Sync with system clipboard
+opt.completeopt = "menu,menuone,noselect"
+opt.conceallevel = 3 -- Hide * markup for bold and italic
+opt.confirm = true -- Confirm to save changes before exiting modified buffer
+opt.cursorline = true -- Enable highlighting of the current line
+opt.expandtab = true -- Use spaces instead of tabs
+opt.formatoptions = "jcroqlnt" -- tcqj
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true -- Ignore case
+opt.inccommand = "nosplit" -- preview incremental substitute
+opt.laststatus = 0
+opt.list = true -- Show some invisible characters (tabs...
+opt.mouse = "a" -- Enable mouse mode
+opt.number = true -- Print line number
+opt.pumblend = 10 -- Popup blend
+opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.relativenumber = true -- Relative line numbers
+opt.scrolloff = 4 -- Lines of context
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+opt.shiftround = true -- Round indent
+opt.shiftwidth = 2 -- Size of an indent
+opt.shortmess:append({ W = true, I = true, c = true })
+opt.showmode = false -- Dont show mode since we have a statusline
+opt.sidescrolloff = 8 -- Columns of context
+opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smartcase = true -- Don't ignore case with capitals
+opt.smartindent = true -- Insert indents automatically
+opt.spelllang = { "en" }
+opt.splitbelow = true -- Put new windows below current
+opt.splitright = true -- Put new windows right of current
+opt.tabstop = 2 -- Number of spaces tabs count for
+opt.termguicolors = true -- True color support
+opt.timeoutlen = 300
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.winminwidth = 5 -- Minimum window width
+opt.wrap = false -- Disable line wrap
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
+if vim.fn.has("nvim-0.9.0") == 1 then
+  opt.splitkeep = "screen"
+  opt.shortmess:append({ C = true })
+end
 
-vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
-
-vim.g.terminal_color_0  = '#000000'
-vim.g.terminal_color_1  = '#FF5555'
-vim.g.terminal_color_2  = '#50FA7B'
-vim.g.terminal_color_3  = '#F1FA8C'
-vim.g.terminal_color_4  = '#BD93F9'
-vim.g.terminal_color_5  = '#FF79C6'
-vim.g.terminal_color_6  = '#8BE9FD'
-vim.g.terminal_color_7  = '#BFBFBF'
-vim.g.terminal_color_8  = '#4D4D4D'
-vim.g.terminal_color_9  = '#FF6E67'
-vim.g.terminal_color_10 = '#5AF78E'
-vim.g.terminal_color_11 = '#F4F99D'
-vim.g.terminal_color_12 = '#CAA9FA'
-vim.g.terminal_color_13 = '#FF92D0'
-vim.g.terminal_color_14 = '#9AEDFE'
-
-vim.cmd([[autocmd TermOpen term://* startinsert]])
-vim.cmd([[
-augroup NVIMRC
-    autocmd!
-    autocmd BufWritePost .vim.lua exec ":so %"
-augroup END
-tnoremap <C-N> <C-\><C-N>
-tnoremap <C-O> <C-\><C-N><C-O>
-]])
-
-vim.cmd([[hi NonText ctermfg=gray guifg=grey10]])
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
