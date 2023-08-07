@@ -1,4 +1,7 @@
 {
   "lazy.nvim": { "branch": "main", "commit": "3ad55ae678876516156cca2f361c51f7952a924b" },
-  "nvim-deus": { "branch": "master", "commit": "81d669d80d46cf9bcd38fae45157f7478581a2ff" }
+  "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },
+  "nui.nvim": { "branch": "main", "commit": "9e3916e784660f55f47daa6f26053ad044db5d6a" },
+  "nvim-deus": { "branch": "master", "commit": "81d669d80d46cf9bcd38fae45157f7478581a2ff" },
+  "nvim-web-devicons": { "branch": "master", "commit": "eb8f80f30fd5e9a6176dee5c46661ebd7437ac46" }
 }
