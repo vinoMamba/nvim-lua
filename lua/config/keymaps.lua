@@ -27,5 +27,5 @@ vim.keymap.set("n", "<right>", "<cmd>:vertical resize+5<CR>", { desc = "resize u
 
 
 -- joshuto
-vim.keymap.set({'n'},'<leader>jo','<cmd>:Joshuto',{ silent = true, noremap = true } )
+vim.keymap.set({'n'},'<leader>jo','<cmd>:Joshuto<cr>',{ silent = true, noremap = true } )
 
