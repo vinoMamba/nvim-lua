@@ -62,5 +62,26 @@ return {
         extensions = {}
       }
     end
+  },
+  -- bufferline
+  {
+    "akinsho/bufferline.nvim",
+    config = {
+      options = {
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        enforce_regular_tabs = true,
+        show_duplicate_prefix = false,
+        always_show_bufferline = true,
+        indicator = {
+          icon = "▎", -- this should be omitted if indicator style is not 'icon'
+          -- style = 'icon' | 'underline' | 'none',
+          style = "underline",
+        }
+      },
+      hover = {
+        enabled = false,
+      },
+    }
   }
 }
