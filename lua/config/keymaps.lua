@@ -10,6 +10,7 @@ vim.keymap.set({'n','v'},'L','$',{ silent = true, noremap = true } )
 vim.keymap.set({'n','v'},'H','^',{ silent = true, noremap = true } )
 vim.keymap.set({'n','v'},'K','8k',{ silent = true, noremap = true } )
 vim.keymap.set({'n','v'},'J','8j',{ silent = true, noremap = true } )
+vim.keymap.set({'n'},'<Esc>','<cmd>nohlsearch<cr>',{ silent = true, noremap = true } )
 
 -- forbidden
 vim.keymap.set({'n'},'s','<Nop>',{ silent = true, noremap = true } )
