@@ -79,9 +79,6 @@ return {
           style = "underline",
         }
       },
-      hover = {
-        enabled = false,
-      },
     }
   },
   -- indent blankline
