@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {
   install = {
-    colorscheme = {"deus"},
+    colorscheme = { "deus" },
   }
 }
 

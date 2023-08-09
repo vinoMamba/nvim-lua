@@ -1,8 +1,8 @@
 return {
-  { 
+  {
     "theniceboy/nvim-deus",
     config = function()
-      vim.cmd[[colorscheme deus]]
+      vim.cmd [[colorscheme deus]]
     end
   },
 }
