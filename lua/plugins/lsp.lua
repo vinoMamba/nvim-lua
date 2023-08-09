@@ -73,6 +73,7 @@ return {
         },
         servers = {
           ['lua_ls'] = { 'lua' },
+          ['gopls'] = { 'go' },
           -- if you have a working setup with null-ls
           -- you can specify filetypes it can format.
           -- ['null-ls'] = {'javascript', 'typescript'},
