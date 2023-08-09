@@ -11,7 +11,7 @@ return {
 
       -- Autocompletion
       -- {'hrsh7th/nvim-cmp'},     -- Required
-      -- {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
       -- {'L3MON4D3/LuaSnip'},     -- Required
       -- others
       {
@@ -87,13 +87,13 @@ return {
       lsp.setup()
       require("fidget").setup()
 
-      -- local lsp_defaults = lspconfig.util.default_config
-      --
-      -- lsp_defaults.capabilities = vim.tbl_deep_extend(
-      --   'force',
-      --   lsp_defaults.capabilities,
-      --   require('cmp_nvim_lsp').default_capabilities()
-      -- )
+      local lsp_defaults = lspconfig.util.default_config
+
+      lsp_defaults.capabilities = vim.tbl_deep_extend(
+        'force',
+        lsp_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities()
+      )
 
       vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
         vim.lsp.handlers.signature_help, {
