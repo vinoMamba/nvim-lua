@@ -17,6 +17,10 @@ vim.keymap.set({ 'n' }, 's', '<Nop>', { silent = true, noremap = true })
 
 -- tab
 vim.keymap.set({ 'n' }, '<leader><Tab>', '<cmd>bNext<cr>', { silent = true, noremap = true })
+vim.keymap.set({ "n" }, "-", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+vim.keymap.set({ "n" }, "=", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set({ 'n' }, '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n' }, '<leader>bd', '<Cmd>BufferLineCloseCurrent<CR>', { silent = true, noremap = true })
 
 -- windows split [only left and right]
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true, noremap = true })
