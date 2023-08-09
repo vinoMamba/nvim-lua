@@ -1,75 +1,152 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig",
-    { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-    { "folke/neodev.nvim",  opts = {} },
-    {
-      "j-hui/fidget.nvim",
-      tag = "legacy",
-    },
-  },
-  config = function()
-    local on_attach = function(_, bufnr)
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = 'LSP: ' .. desc
-        end
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-      end
-      nmap('<leader>cd', vim.diagnostic.open_float, 'Line Diagnostics')
-      nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-      nmap('gd', '<cmd>Telescope lsp_definitions<cr>', '[G]oto [D]efinition')
-      nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-      nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-      nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-      nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-      nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-      nmap('gK',vim.lsp.buf.signature_help , '[W]orkspace [S]ymbols')
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    dependencies = {
 
-      -- See `:help gh` for why this keymap
-      nmap('gh', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-      -- Lesser used LSP functionality
-      nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-      nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-      nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-      nmap('<leader>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, '[W]orkspace [L]ist Folders')
-      nmap("<space>f", function()
-        vim.lsp.buf.format { async = true }
-      end, "[F]ormat code")
-    end
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },             -- Required
+      { 'williamboman/mason.nvim' },           -- Optional
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-    require("neoconf").setup()
-    require("neodev").setup()
-    require("fidget").setup()
+      -- Autocompletion
+      -- {'hrsh7th/nvim-cmp'},     -- Required
+      -- {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      -- {'L3MON4D3/LuaSnip'},     -- Required
+      -- others
+      {
+        'j-hui/fidget.nvim',
+        tag = "legacy"
 
-    local servers = {
-      lua_ls = {
-        Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
+      },
+      "ray-x/lsp_signature.nvim",
+      {
+        "folke/trouble.nvim",
+        opts = {
+          use_diagnostic_signs = true,
+          action_keys = {
+            close = "<esc>",
+          },
         },
       },
-    }
-    require("mason").setup()
-    local mlsp = require("mason-lspconfig")
-    mlsp.setup({
-      ensure_installed = vim.tbl_keys(servers),
-    })
-    mlsp.setup_handlers {
-      function(server_name)
-        require('lspconfig')[server_name].setup {
-          --capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
+    },
+    config = function()
+      local lsp = require('lsp-zero').preset({})
+
+      lsp.on_attach(function(client, bufnr)
+        lsp.default_keymaps({ buffer = bufnr })
+
+        client.server_capabilities.semanticTokensProvider = nil
+
+        vim.diagnostic.config({
+          severity_sort = true,
+          underline = true,
+          signs = true,
+          virtual_text = false,
+          update_in_insert = false,
+          float = true,
+        })
+      end)
+
+      lsp.set_sign_icons({
+        error = ' ',
+        warn = ' ',
+        hint = ' ',
+        info = ' '
+      })
+
+      lsp.ensure_installed({
+        'lua_ls'
+      })
+
+      lsp.set_server_config({
+        on_init = function(client)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+
+      })
+
+      lsp.format_on_save({
+        format_opts = {
+          async = false,
+          timeout_ms = 10000,
+        },
+        servers = {
+          ['lua_ls'] = { 'lua' },
+          -- if you have a working setup with null-ls
+          -- you can specify filetypes it can format.
+          -- ['null-ls'] = {'javascript', 'typescript'},
         }
-      end
-    }
-  end
+      })
+
+      local lspconfig = require('lspconfig')
+
+      lspconfig.lua_ls.setup({
+      })
+
+      lsp.setup()
+      require("fidget").setup()
+
+      -- local lsp_defaults = lspconfig.util.default_config
+      --
+      -- lsp_defaults.capabilities = vim.tbl_deep_extend(
+      --   'force',
+      --   lsp_defaults.capabilities,
+      --   require('cmp_nvim_lsp').default_capabilities()
+      -- )
+
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers.signature_help, {
+
+          silent = true,
+          focusable = false,
+          border = "rounded",
+        }
+      )
+      local group = vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
+      vim.api.nvim_create_autocmd({ "CursorHold" }, {
+        pattern = "*",
+        callback = function()
+          vim.diagnostic.open_float(0, {
+            scope = "cursor",
+            focusable = false,
+            close_events = {
+              "CursorMoved",
+              "CursorMovedI",
+              "BufHidden",
+              "InsertCharPre",
+              "WinLeave",
+            },
+          })
+        end,
+        group = group,
+      })
+
+      -- keymaps
+      vim.api.nvim_create_autocmd('LspAttach', {
+        desc = 'LSP actions',
+        callback = function(event)
+          local opts = { buffer = event.buf, noremap = true, nowait = true }
+
+          vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', 'gD', ':tab sp<CR><cmd>lua vim.lsp.buf.definition()<cr>', opts)
+
+          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+          vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
+
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('i', '<c-f>', vim.lsp.buf.signature_help, opts)
+
+          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set('n', '<leader>aw', vim.lsp.buf.code_action, opts)
+          vim.keymap.set('n', "<leader>,", vim.lsp.buf.code_action, opts)
+
+          vim.keymap.set('n', '<leader>t', ':Trouble<cr>', opts)
+          vim.keymap.set('n', '<leader>-', vim.diagnostic.goto_prev, opts)
+          vim.keymap.set('n', '<leader>=', vim.diagnostic.goto_next, opts)
+        end
+      })
+    end
+  }
 }
