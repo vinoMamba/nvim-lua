@@ -1,8 +1,20 @@
 return {
+  -- {
+  --   "theniceboy/nvim-deus",
+  --   "catppuccin/nvim",
+  --   config = function()
+  --     vim.cmd [[colorscheme deus]]
+  --   end
+  -- },
   {
-    "theniceboy/nvim-deus",
+    "catppuccin/nvim",
+    priority = 1000,
+    name = "catppuccin",
     config = function()
-      vim.cmd [[colorscheme deus]]
-    end
-  },
+      require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+      })
+      vim.cmd [[colorscheme catppuccin]]
+    end,
+  }
 }
