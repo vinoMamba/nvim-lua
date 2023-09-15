@@ -1,3 +1,2 @@
-require("config.defaults")
-require("config.keymaps")
-require("config.plugin")
+require("vino.config")
+require("vino.lazy")
