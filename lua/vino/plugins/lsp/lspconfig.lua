@@ -4,8 +4,14 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
+    "folke/neodev.nvim"
   },
   config = function()
+    --NOTE: Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+    require("neodev").setup({
+      lspconfig = true
+    })
+
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -70,6 +76,11 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+    })
+
+    lspconfig["eslint"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
     })
 
     -- configure lua server (with special settings)
