@@ -12,4 +12,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("vino.plugins",{})
+require("lazy").setup({
+  {import = "vino.plugins"},
+  {import = "vino.plugins.lsp"}
+},{})

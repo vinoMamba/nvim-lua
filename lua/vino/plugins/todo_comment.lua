@@ -1,5 +1,5 @@
   -- TODO: todo
-  -- HACK:hack
+  -- HACK: hack
   -- WARN: warn
   -- PERF: perf
   -- NOTE: note
