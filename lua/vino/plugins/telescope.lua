@@ -13,10 +13,7 @@ return {
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, m)                 -- help
     vim.keymap.set('n', '<leader>fl', builtin.resume, m)                    -- 上次查找的关键词
     vim.keymap.set('n', '<leader>ff', builtin.current_buffer_fuzzy_find, m) -- 当前 buffer 内查找
-    vim.keymap.set('n', '<leader>fd', builtin.diagnostics, m)               -- 查找警告
-    vim.keymap.set('n', ':', builtin.commands, m)                           -- 查找命令
-    -- vim.keymap.set('n', '<leader>fs', builtin.spell_suggest, m) -- 拼写建议
-
+    -- vim.keymap.set('n', ':', builtin.commands, m)
     require('telescope').setup {
       defaults = {
         vimgrep_arguments = {
@@ -33,9 +30,9 @@ return {
         color_devicons = true,
         prompt_prefix = "🔍 ",
         selection_caret = " ",
-        --path_display = { "truncate" },
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        file_ignore_patterns = { "node_modules", "dist" },
       },
       pickers = {
         buffers = {

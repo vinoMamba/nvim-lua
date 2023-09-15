@@ -9,12 +9,10 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {
-  install = {
-    colorscheme = { "deus" },
-  }
-}
-
-require("lazy").setup("plugins", opts)
+require("lazy").setup({
+  {import = "vino.plugins"},
+  {import = "vino.plugins.lsp"}
+},{})
