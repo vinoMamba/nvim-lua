@@ -4,7 +4,15 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    "folke/neodev.nvim"
+    "folke/neodev.nvim",
+    {
+      "j-hui/fidget.nvim",
+      tag = "legacy",
+      event = "LspAttach",
+      opts = {
+        -- options
+      },
+    }
   },
   config = function()
     --NOTE: Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
