@@ -71,4 +71,4 @@ local ToggleTerm = {
   end
 }
 
-return ToggleTerm
+return Floaterm

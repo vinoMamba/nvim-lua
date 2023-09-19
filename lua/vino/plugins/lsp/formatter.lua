@@ -10,6 +10,8 @@ return {
     ft('lua'):fmt('lsp'):append('stylua')
     ft('html'):fmt('lsp')
     ft('typescriptreact'):fmt('lsp')
+    ft('typescript'):fmt('lsp')
+    ft('jsonc'):fmt('lsp')
 
     -- Call setup() LAST!
     require('guard').setup({
