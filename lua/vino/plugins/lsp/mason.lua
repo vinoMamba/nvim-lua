@@ -10,9 +10,9 @@ return {
     mason.setup({
       ui = {
         icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗"
         }
       }
     })
@@ -24,6 +24,8 @@ return {
         "cssls",
         "lua_ls",
         "emmet_ls",
+        "jsonls",
+        "volar"
       },
       automatic_installation = true, -- not the same as ensure_installed
     })
