@@ -25,7 +25,8 @@ return {
         "lua_ls",
         "emmet_ls",
         "jsonls",
-        "volar"
+        "volar",
+        "prettierd"
       },
       automatic_installation = true, -- not the same as ensure_installed
     })
