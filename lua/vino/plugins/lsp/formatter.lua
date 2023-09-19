@@ -8,6 +8,8 @@ return {
     local ft = require('guard.filetype')
 
     ft('lua'):fmt('lsp'):append('stylua')
+    ft('html'):fmt('lsp')
+    ft('typescriptreact'):fmt('lsp')
 
     -- Call setup() LAST!
     require('guard').setup({
