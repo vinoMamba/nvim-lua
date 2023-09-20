@@ -34,7 +34,8 @@ local Conform = {
         lua = { "stylua" },
         html = { "prettierd" },
         css = { "prettierd" },
-        typescript = { "prettierd" }
+        typescript = { "prettierd" },
+        ["scss"] = { "prettierd" },
       },
     })
 
