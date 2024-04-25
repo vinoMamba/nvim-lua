@@ -1,17 +1,17 @@
 return {
   {
     'williamboman/mason.nvim',
+    lazy = false,
     config = function()
       require('mason').setup()
     end
   },
   {
     'williamboman/mason-lspconfig.nvim',
-    config = function()
-      require('mason-lspconfig').setup({
-        ensure_installed = { 'lua_ls' }
-      })
-    end
+    lazy = false,
+    opts = {
+      auto_install = true,
+    }
   },
   {
     'neovim/nvim-lspconfig',
@@ -31,12 +31,24 @@ return {
       map('<leader>k', vim.lsp.buf.hover, 'Hover Documentation')
       map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
 
-      lspconfig.lua_ls.setup({})
-      lspconfig.tsserver.setup({})
-      lspconfig.gopls.setup({})
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities
+      })
+
+      lspconfig.tsserver.setup({
+        capabilities = capabilities
+      })
+
+      lspconfig.gopls.setup({
+        capabilities = capabilities
+      })
+
+      lspconfig.html.setup({
+        capabilities = capabilities
+      })
     end
   }
 }
