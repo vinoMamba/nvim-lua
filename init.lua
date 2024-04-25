@@ -63,7 +63,8 @@ vim.opt.scrolloff = 10
 -- S for save
 vim.keymap.set({ 'n', 'v' }, 'S', '<cmd>w<cr>', { silent = true, noremap = true })
 -- Q for quit
-vim.keymap.set({ 'n', 'v' }, 'Q', '<cmd>q<cr>', { silent = true, noremap = true })
+-- vim.keymap.set({ 'n', 'v' }, 'Q', '<cmd>q<cr>', { silent = true, noremap = true })
+
 -- Exit insert mode
 vim.keymap.set({ 'i' }, 'jk', '<Esc>', { silent = true, noremap = true })
 
