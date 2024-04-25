@@ -20,6 +20,8 @@ vim.opt.clipboard = 'unnamedplus'
 -- Enable break indent 
 vim.opt.breakindent = true
 
+vim.opt.smartindent = true 
+
 -- Save undo history
 vim.opt.undofile = false
 
@@ -27,6 +29,11 @@ vim.opt.undofile = false
 -- 'Example' --> 'Example' only
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- indent
+vim.opt.tabstop = 2  
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true 
 
 -- Keep signcolumn 
 vim.opt.signcolumn = 'yes'
@@ -36,6 +43,7 @@ vim.opt.timeoutlen = 300
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
 
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
@@ -78,5 +86,34 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode
+-- Exit terminal mode (a new buffer)
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- Highlight when yanking text
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('vino-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+-- [[Plugins Lazynvim]]
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  {import = "plugins"},
+},{})
+
