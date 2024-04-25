@@ -17,25 +17,25 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim
 vim.opt.clipboard = 'unnamedplus'
 
--- Enable break indent 
+-- Enable break indent
 vim.opt.breakindent = true
 
-vim.opt.smartindent = true 
+vim.opt.smartindent = true
 
 -- Save undo history
 vim.opt.undofile = false
 
--- 'example' --> 'Example','example' 
+-- 'example' --> 'Example','example'
 -- 'Example' --> 'Example' only
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- indent
-vim.opt.tabstop = 2  
+vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.expandtab = true 
+vim.opt.expandtab = true
 
--- Keep signcolumn 
+-- Keep signcolumn
 vim.opt.signcolumn = 'yes'
 
 vim.opt.updatetime = 250
@@ -75,15 +75,15 @@ vim.keymap.set({ 'n' }, 's', '<Nop>', { silent = true, noremap = true })
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Move 
+-- Move
 vim.keymap.set({ 'n', 'v' }, 'L', '$', { silent = true, noremap = true })
 vim.keymap.set({ 'n', 'v' }, 'H', '^', { silent = true, noremap = true })
 vim.keymap.set({ 'n', 'v' }, 'K', '8k', { silent = true, noremap = true })
 vim.keymap.set({ 'n', 'v' }, 'J', '8j', { silent = true, noremap = true })
 
--- Diagnostic 
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message'})
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message'})
+-- Diagnostic
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -115,6 +115,23 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {import = "plugins"},
-},{})
-
+  { import = "plugins" },
+}, {
+  ui = {
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤 ',
+    },
+  }
+})
