@@ -36,24 +36,18 @@ return {
     "folke/which-key.nvim",
     config = function() end,
   },
-  --
-  -- {
-  -- 	"williamboman/mason.nvim",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"lua-language-server", "stylua",
-  -- 			"html-lsp", "css-lsp" , "prettier"
-  -- 		},
-  -- 	},
-  -- },
-  --
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "configs.treesitter"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      dofile(vim.g.base46_cache .. "treesitter")
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
 }
