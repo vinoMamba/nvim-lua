@@ -37,3 +37,10 @@ lspconfig.gopls.setup {
   capabilities = capabilities,
   on_init = on_init,
 }
+
+-- tailwindcss
+lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  on_init = on_init,
+}
