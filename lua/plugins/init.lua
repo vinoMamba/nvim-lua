@@ -32,10 +32,7 @@ return {
       require("nvim-tree").setup(opts)
     end,
   },
-  {
-    "folke/which-key.nvim",
-    config = function() end,
-  },
+  { "folke/which-key.nvim", enabled = false },
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
