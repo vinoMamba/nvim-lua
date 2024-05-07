@@ -146,6 +146,5 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- Use `opts = {}` to force a plugin to be loaded.
-  { 'numToStr/Comment.nvim', opts = {} },
+  { import = 'plugins' },
 })
