@@ -10,12 +10,14 @@ return {
       ensure_installed = {
         "lua_ls",
         "tsserver",
+        "tailwindcss",
       }
     }
     require("mason-tool-installer").setup {
       ensure_installed = {
         "stylua",
         "tsserver",
+        "tailwindcss",
       }
     }
   end
