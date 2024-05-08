@@ -7,7 +7,10 @@ return {
       'lua',
       'luadoc',
       'markdown',
-      'tsx'
+      'sql',
+      'tsx',
+      'typescript',
+      'go',
     },
     auto_install = true,
     highlight = {
