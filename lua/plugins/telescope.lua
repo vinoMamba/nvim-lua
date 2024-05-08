@@ -4,7 +4,7 @@ return {
     event = 'VimEnter',
     branch = '0.1.x',
     dependencies = {
-      {'nvim-lua/plenary.nvim'},
+      { 'nvim-lua/plenary.nvim' },
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
         -- `build` is used to run some command when the plugin is installed/updated.
@@ -17,11 +17,13 @@ return {
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-      { 'nvim-tree/nvim-web-devicons',enabled = true },
+      { 'nvim-tree/nvim-web-devicons',            enabled = true },
     },
     config = function()
-
       require('telescope').setup {
+        defaults = {
+          borderchars = { "█", " ", "▀", "█", "█", " ", " ", "▀" },
+        },
         extensions = {
           ['ui-select'] = {
             require("telescope.themes").get_dropdown()
@@ -34,17 +36,18 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh',       builtin.help_tags, { desc = 'Search help tags' })
-      vim.keymap.set('n', '<leader>sk',       builtin.keymaps, { desc = 'Search keymaps' })
-      vim.keymap.set('n', '<leader>sb',       builtin.buffers, { desc = 'Search buffers' })
-      vim.keymap.set('n', '<leader>sc',       builtin.commands, { desc = 'Search commands' })
-      vim.keymap.set('n', '<leader>sr',       builtin.resume, { desc = 'Search resume' })
-      vim.keymap.set('n', '<leader>sd',       builtin.diagnostics, { desc = 'Sdarch diagnostics' })
-      vim.keymap.set('n', '<leader>st',       "<cmd>TodoTelescope<cr>", { desc = 'Sdarch todo comments' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search help tags' })
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search keymaps' })
+      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Search buffers' })
+      vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = 'Search commands' })
+      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Search resume' })
+      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Sdarch diagnostics' })
+      vim.keymap.set('n', '<leader>st', "<cmd>TodoTelescope<cr>", { desc = 'Sdarch todo comments' })
 
       vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Search files in current dir' })
       vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "telescope live grep" })
-      vim.keymap.set('n', '<leader>;', builtin.current_buffer_fuzzy_find,{ desc = '[/] Fuzzily search in current buffer' })
+      vim.keymap.set('n', '<leader>;', builtin.current_buffer_fuzzy_find,
+        { desc = '[/] Fuzzily search in current buffer' })
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
