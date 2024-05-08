@@ -6,6 +6,8 @@ return {
       'html',
       'lua',
       'luadoc',
+      'vim',
+      'regex',
       'markdown',
       'sql',
       'tsx',
