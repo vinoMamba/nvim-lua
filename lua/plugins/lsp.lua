@@ -5,7 +5,7 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
-    vim.api.nvim_create_autocmd('LspAttach',{
+    vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(event)
         local map = function(keys, func, desc)
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
@@ -34,23 +34,26 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
     local handlers = {
       function(server_name)
-        require("lspconfig")[server_name].setup{
+        require("lspconfig")[server_name].setup {
+          capabilities = capabilities,
         }
       end,
-      ["lua_ls"] = function ()
+      ["lua_ls"] = function()
         local lspconfig = require("lspconfig")
-          lspconfig.lua_ls.setup {
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" }
-                }
+        lspconfig.lua_ls.setup {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" }
               }
             }
           }
-     end,
+        }
+      end,
     }
 
     require("mason-lspconfig").setup_handlers(handlers)

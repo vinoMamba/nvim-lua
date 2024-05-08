@@ -54,3 +54,6 @@ map("n", "=", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 --Indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+
+-- format
+map("n", "<leader>l", vim.lsp.buf.format, {})
