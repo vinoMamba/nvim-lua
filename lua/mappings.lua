@@ -14,8 +14,6 @@ map({ "n", "v" }, "J", "5j", { silent = true, noremap = true })
 --Move lines
 map("n", "<leader>j", "<cmd>m .+1<cr>==", { desc = "Move Down" })
 map("n", "<leader>k", "<cmd>m .-2<cr>==", { desc = "Move Up" })
---map("i", "<leader>j", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
---map("i", "<leader>k", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<leader>j", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<leader>k", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
@@ -42,6 +40,12 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 --Buffer
 map("n", "-", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "=", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "close current buffer" })
+map("n", "<leader>ba", function ()
+  require("nvchad.tabufline").closeAllBufs()
+end , { desc = "close all buffers" })
+
+
 
 --Indenting
 map("v", "<", "<gv")
@@ -78,7 +82,7 @@ map("n", "<leader>sb", "<cmd>Telescope buffers<CR>", { desc = "Search buffers" }
 map("n", "<leader>sc", "<cmd>Telescope commands<CR>", { desc = "Search commands" })
 map("n", "<leader>sr", "<cmd>Telescope resume<CR>", { desc = "Search resume" })
 map("n", "<leader>sd", "<cmd>Telescope diagostics<CR>", { desc = "Search diagostics" })
--- map('n', '<leader>st', "<cmd>TodoTelescope<cr>", { desc = 'Sdarch todo comments' })
+map('n', '<leader>st', "<cmd>TodoTelescope<cr>", { desc = 'Sdarch todo comments' })
 
 map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>", { desc = "Search files in current dir" })
 map("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search live_grep" })
