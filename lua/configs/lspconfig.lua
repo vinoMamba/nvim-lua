@@ -1,4 +1,3 @@
--- EXAMPLE 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -14,7 +13,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local lspconfig = require "lspconfig"
 
-local servers = { "html", "cssls" }
+
+local servers = { "html", "cssls", "tsserver", "eslint", "tailwindcss","gopls"}
 
 
 -- lsps with default config

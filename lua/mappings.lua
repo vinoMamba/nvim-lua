@@ -19,14 +19,6 @@ map("n", "<leader>k", "<cmd>m .-2<cr>==", { desc = "Move Up" })
 map("v", "<leader>j", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<leader>k", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
--- Exit terminal mode (a new buffer)
-map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
-map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
-map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
-map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
-map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-
 --Insert move
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
@@ -58,4 +50,36 @@ map("v", ">", ">gv")
 -- format
 map("n", "<leader>l", vim.lsp.buf.format, {})
 
+-- Exit terminal mode (a new buffer)
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
+map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
+map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
+map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
+map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
+map({ "n", "t" }, "<A-1>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "terminal new horizontal term" })
+
+map({ "n", "t" }, "<A-v>", function()
+  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
+end, { desc = "terminal toggleable vertical term" })
+
+map({ "n", "t" }, "<A-i>", function()
+  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "terminal toggle floating term" })
+
+
+-- Telescope
+map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", { desc = "Search help_tags" })
+map("n", "<leader>sk", "<cmd>Telescope keymaps<CR>", { desc = "Search keymaps" })
+map("n", "<leader>sb", "<cmd>Telescope buffers<CR>", { desc = "Search buffers" })
+map("n", "<leader>sc", "<cmd>Telescope commands<CR>", { desc = "Search commands" })
+map("n", "<leader>sr", "<cmd>Telescope resume<CR>", { desc = "Search resume" })
+map("n", "<leader>sd", "<cmd>Telescope diagostics<CR>", { desc = "Search diagostics" })
+-- map('n', '<leader>st', "<cmd>TodoTelescope<cr>", { desc = 'Sdarch todo comments' })
+
+map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>", { desc = "Search files in current dir" })
+map("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search live_grep" })
+map("n", "<leader>;", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Fuzzily search in current buffer" })
