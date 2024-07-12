@@ -4,7 +4,6 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "gopls" }
 
 local map = vim.keymap.set
 
@@ -34,15 +33,18 @@ local function on_attach(_, bufnr)
   map("n", "gr", vim.lsp.buf.references, opts "Show references")
 end
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
-end
 
+-- local servers = { "html", "cssls", "gopls" ,"tailwindcss" }
+-- -- lsps with default config
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--     on_attach = on_attach,
+--     on_init = on_init,
+--     capabilities = capabilities,
+--   }
+-- end
+
+-- lua
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
   on_init = on_init,
@@ -71,4 +73,24 @@ lspconfig.tsserver.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
+}
+
+-- tailwindcss
+lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  tailwindCSS = {
+    classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+    lint = {
+      cssConflict = "warning",
+      invalidApply = "error",
+      invalidConfigPath = "error",
+      invalidScreen = "error",
+      invalidTailwindDirective = "error",
+      invalidVariant = "error",
+      recommendedVariantOrder = "warning"
+    },
+    validate = true
+  }
 }
