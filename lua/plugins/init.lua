@@ -16,6 +16,25 @@ return {
       require "configs.lspconfig"
     end,
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = function()
+      local opts = require "nvchad.configs.nvimtree"
+      local mine = {
+        view = {
+          adaptive_size = false,
+          side = "right",
+          width = 30,
+          preserve_window_proportions = true,
+        },
+      }
+      return vim.tbl_deep_extend("force",opts,mine)
+    end,
+    config = function(_, opts)
+      require("nvim-tree").setup(opts)
+    end,
+  },
   --
   -- {
   -- 	"williamboman/mason.nvim",

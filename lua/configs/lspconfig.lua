@@ -94,3 +94,25 @@ lspconfig.tailwindcss.setup {
     validate = true
   }
 }
+
+-- eslint
+local function eslint_attach(client, bufnr)
+  on_attach(client, bufnr)
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = bufnr,
+    command = "EslintFixAll",
+  })
+end
+
+lspconfig.eslint.setup {
+  on_attach = eslint_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
+
+-- golang 
+require'lspconfig'.gopls.setup{
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
