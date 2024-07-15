@@ -53,7 +53,6 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle windo
 map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
 map("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>;", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
-map("n", "<leader>t", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
 map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
@@ -67,11 +66,12 @@ map(
 )
 
 -- terminal
+map("n", "<leader>t", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
-map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle { pos = "vsp", size = 0.5, id = "vtoggleTerm" }
-end, { desc = "terminal toggleable vertical term" })
+-- map({ "n", "t" }, "<A-v>", function()
+--   require("nvchad.term").toggle { pos = "vsp", size = 0.5, id = "vtoggleTerm" }
+-- end, { desc = "terminal toggleable vertical term" })
 
 map({ "n", "t" }, "<A-t>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
@@ -91,3 +91,22 @@ map({ "n", "t" }, "<A-i>", function()
     }
   }
 end, { desc = "terminal toggle floating term" })
+
+local list = { 1, 2, 3, 4, 5 }
+
+for _, value in ipairs(list) do
+  map({ "n", "t" }, '<leader>' .. value, function()
+    require("nvchad.term").toggle {
+      pos = "float",
+      id = "floatTerm" .. value,
+      float_opts = {
+        relative = "editor",
+        row = 0.1,
+        col = 0.2,
+        width = 0.6,
+        height = 0.6,
+        border = "single",
+      }
+    }
+  end, { desc = "terminal toggle floating term" })
+end
