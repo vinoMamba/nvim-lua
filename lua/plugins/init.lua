@@ -1,12 +1,8 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
-  },
-  { "folke/which-key.nvim", enabled = false },
+  --disabled
+  { "stevearc/conform.nvim", enabled = true },
+  { "folke/which-key.nvim",  enabled = false },
+
 
   -- These are some examples, uncomment them if you want to see them work!
   {
@@ -29,7 +25,7 @@ return {
           preserve_window_proportions = true,
         },
       }
-      return vim.tbl_deep_extend("force",opts,mine)
+      return vim.tbl_deep_extend("force", opts, mine)
     end,
     config = function(_, opts)
       require("nvim-tree").setup(opts)
