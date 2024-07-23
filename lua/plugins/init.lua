@@ -3,7 +3,6 @@ return {
   { "stevearc/conform.nvim", enabled = true },
   { "folke/which-key.nvim",  enabled = false },
 
-
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
@@ -97,5 +96,15 @@ return {
         }
       })
     end
-  }
+  },
+  {
+    "folke/todo-comments.nvim",
+    lazy = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
 }

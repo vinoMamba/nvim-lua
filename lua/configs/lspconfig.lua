@@ -7,14 +7,16 @@ local lspconfig = require "lspconfig"
 
 local map = vim.keymap.set
 
+
 local function on_attach(_, bufnr)
+  local builtin = require 'telescope.builtin'
   local function opts(desc)
     return { buffer = bufnr, desc = "LSP " .. desc }
   end
   map("n", "<leader>k", vim.lsp.buf.hover, opts "hover")
-  map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
-  map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
-  map("n", "gi", vim.lsp.buf.implementation, opts "Go to implementation")
+  map("n", "gD", builtin.lsp_type_definitions, opts "Go to declaration")
+  map("n", "gd", builtin.lsp_definitions, opts "Go to definition")
+  map("n", "gi", builtin.lsp_implementations, opts "Go to implementation")
   map("n", "<leader>sh", vim.lsp.buf.signature_help, opts "Show signature help")
   map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
   map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
@@ -110,8 +112,8 @@ lspconfig.eslint.setup {
   capabilities = capabilities,
 }
 
--- golang 
-require'lspconfig'.gopls.setup{
+-- golang
+require 'lspconfig'.gopls.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
