@@ -27,7 +27,7 @@ local function on_attach(_, bufnr)
 
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
 
-  map("n", "<leader>ra", function()
+  map("n", "<leader>rn", function()
     require "nvchad.lsp.renamer" ()
   end, opts "NvRenamer")
 

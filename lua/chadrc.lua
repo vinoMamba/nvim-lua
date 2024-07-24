@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-  theme = "everforest",
+  theme = "monekai",
   cmp = {
     icons = true,
     lspkind_text = true,
