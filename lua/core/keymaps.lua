@@ -43,7 +43,12 @@ map("n", "<leader>;", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "
 
 
 -- [[bufferline]]
-map("n", "=",           "<cmd>BufferLineCycleNext<CR>",   { desc = "move to next buffer" })
-map("n", "-",           "<cmd>BufferLineCyclePrev<CR>",   { desc = "move to prev buffer" })
-map("n", "<leader>b",   "<cmd>BufferLinePickClose<CR>",   { desc = "close pick buffer" })
-map("n", "<leader>bo",  "<cmd>BufferLineCloseOthers<CR>", { desc = "close pick buffer" })
+map("n", "=", "<cmd>BufferLineCycleNext<CR>", { desc = "move to next buffer" })
+map("n", "-", "<cmd>BufferLineCyclePrev<CR>", { desc = "move to prev buffer" })
+map("n", "<leader>b", "<cmd>BufferLinePickClose<CR>", { desc = "close pick buffer" })
+map("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "close pick buffer" })
+
+
+
+map("n", "<leader>i", "<cmd>ToggleTerm<cr>", { desc = "open terminal" })
+map("t", "<leader>i", "<C-\\><C-n><cmd>q<cr>", { desc = "quit terminal mode" })
