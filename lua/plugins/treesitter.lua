@@ -1,10 +1,12 @@
 return {
- "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPost", "BufNewFile" },
-  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+  "nvim-treesitter/nvim-treesitter",
+  version = false,
   build = ":TSUpdate",
+  event = { "VeryLazy" },
+  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
   opts = {
-    highlight = { enable = true },
+    highlight = {
+      enable = true },
     indent = { enable = true },
     ensure_installed = {
       "bash",
@@ -31,6 +33,10 @@ return {
       "vimdoc",
       "xml",
       "yaml",
+      "go"
     },
   },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end
 }
