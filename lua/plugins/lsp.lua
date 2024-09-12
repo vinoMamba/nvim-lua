@@ -40,7 +40,8 @@ return {
       lua_ls = {},
       ts_ls = {},
       eslint = {},
-      gopls = {}
+      gopls = {},
+      tailwindcss = {}
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
