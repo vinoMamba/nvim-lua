@@ -92,7 +92,7 @@ return {
             FloatBorder = { bg = colors.base, fg = colors.surface0 },
             GitSignsChange = { fg = colors.peach },
             LineNr = { fg = colors.overlay0 },
-            LspInfoBorder = { link = "FloatBorder" },
+            -- LspInfoBorder = { link = "FloatBorder" },
             NeoTreeDirectoryIcon = { fg = colors.subtext1 },
             NeoTreeDirectoryName = { fg = colors.subtext1 },
             NeoTreeFloatBorder = { link = "TelescopeResultsBorder" },
