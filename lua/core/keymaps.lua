@@ -30,6 +30,9 @@ map({ "n", "v" }, "K", "5k", { silent = true, noremap = true })
 map({ "n", "v" }, "J", "5j", { silent = true, noremap = true })
 
 
+map({ "n" }, "dL", "d$", { silent = true, noremap = true })
+map({ "n" }, "dH", "d^", { silent = true, noremap = true })
+
 
 -- plugins
 
