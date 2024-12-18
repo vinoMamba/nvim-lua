@@ -1,3 +1,5 @@
+> migrate to my dotfiles repo  https://github.com/vinoMamba/dotfiles
+
 # nvim-lua
 This is my Neovim configuration. And I use it on both MacOS and WSL2. It's cool.
 
